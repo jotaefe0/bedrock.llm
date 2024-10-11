@@ -36,7 +36,7 @@ local function create_or_open_file(filename)
 	return vim.api.nvim_get_current_buf()
 end
 
-function M.stream_response()
+function M.stream_response(opts)
 	local prompt = get_visual_selection()
 	if prompt == "" then
 		print("No text selected")
@@ -45,9 +45,10 @@ function M.stream_response()
 
 	local payload = vim.json.encode({
 		api_key = os.getenv("AWS_BEDROCK_API_KEY"),
-		temperature = 0,
-		model = "anthropic.claude-3-5-sonnet-20240620-v1:0",
-		system = "You are an expert LUA and NVIM coder",
+		temperature = opts.temperature or 0,
+		model = opts.model or "anthropic.claude-3-5-sonnet-20240620-v1:0",
+		system = opts.system_prompt
+			or "You are an expert ultra senior developer, you know every programming language and code with excellence. You always read instructions and think the best way to answer, usually as markdown, but are flexible to other ways if asked",
 		max_tokens = 4096,
 		prompt = prompt,
 	})
