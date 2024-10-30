@@ -2,6 +2,8 @@
 
 This repository contains a Lua module for integrating AWS Bedrock with Neovim. The main file, `bedrock.lua`, provides functionality to stream responses from AWS Bedrock directly into a Neovim buffer.
 
+![bedrock](bedrock.gif)
+
 ## Dependencies
 
 This project depends on the AWS Lambda Web Adapter for creating the endpoint for AWS Bedrock. The specific example used as a reference is the FastAPI response streaming example, which can be found at:
